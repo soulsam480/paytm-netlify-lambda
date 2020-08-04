@@ -1,0 +1,14 @@
+{
+  "name": "paytm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "checksum.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "crypto": "^1.0.1",
+    "util": "^0.12.3"
+  }
+}
