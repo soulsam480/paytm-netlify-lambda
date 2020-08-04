@@ -17,31 +17,32 @@ module.exports = {
         `">`;
     }
     return (
-      `<head>
-      <title>Merchant Check Out Page</title>
-    </head>
-    <body>
-      <center><h1>Please do not refresh this page...</h1></center>
-        <form method="post" action="` +
+      `
+         <html>
+         <head>
+           <title>Merchant Check Out Page</title>
+         </head>
+         <body>
+           <center><h1>Please do not refresh this page...</h1></center>
+             <form method="post" action="` +
       url +
       `" name="f1">
-        <table border="1">
-          <tbody>
-          ` +
+             <table border="1">
+               <tbody>
+               ` +
       field +
       `
-          <input type="hidden" name="CHECKSUMHASH" value="` +
+               <input type="hidden" name="CHECKSUMHASH" value="` +
       checksum +
       `">
-          </tbody>
-        </table>
-        <script type="text/javascript">
-        (function (){ 
-          document.f1.submit();
-          })();
-        </script>
-      </form>
-    </body>`
+               </tbody>
+             </table>
+             <script type="text/javascript">
+               document.f1.submit();
+             </script>
+           </form>
+         </body>
+       </html>`
     );
   },
 };
