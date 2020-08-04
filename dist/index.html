@@ -15,15 +15,15 @@
         const data = {
             name: "sambit"
         }
-        await fetch('http://localhost:9000/.netlify/functions/test', {
+        await fetch('https://hopeful-mirzakhani-a59182.netlify.app/.netlify/functions/test', {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {
                 "Content-Type": "application/json"
             }
-        }).then(res => res.json())
-            .then(data => console.log(data))
-            .catch(err => console.log(err))
+        }).then(res => console.log(res))
+/*             .then(data => console.log(data))
+ */            .catch(err => console.log(err))
     }
 </script>
 

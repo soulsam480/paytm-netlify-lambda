@@ -8,7 +8,7 @@ const corsOptions = {
 };
 const router = express.Router();
 router.get("/", cors(corsOptions), (req, res) => {
-  const name = JSON.stringify(req.body).name;
+  const name = req.body.name;
   res.sendStatus(200);
   res.send(name);
 });
