@@ -63,5 +63,5 @@ router.post("/", cors(corsOptions), (req, res) => {
     );
   });
 });
-app.use("/.netlify/functions/test", router);
+app.use("/.netlify/functions/payment", router);
 module.exports.handler = serverless(app);
