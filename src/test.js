@@ -7,7 +7,7 @@ const corsOptions = {
   allowedHeaders: ["Content-Type"],
 };
 const router = express.Router();
-router.get("/", cors(corsOptions), (req, res) => {
+router.all("/", cors(corsOptions), (req, res) => {
   const name = req.body.name;
   res.sendStatus(200);
   res.send(name);
