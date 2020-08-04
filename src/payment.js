@@ -10,7 +10,7 @@ const corsOptions = {
   allowedHeaders: ["Content-Type"],
 };
 const router = express.Router();
-
+const { VAR_NAME } = process.env;
 //express code ends here
 
 router.post("/", cors(corsOptions), (req, res) => {
@@ -18,7 +18,7 @@ router.post("/", cors(corsOptions), (req, res) => {
   const paytm_checksum = require("./paytm/checksum");
   const myFun = require("./utils/myFunc");
   //code starts here
-
+  console.log(VAR_NAME);
   var random = Math.floor(Math.random() * 999999).toString();
   var amount = req.body.amount;
   var name = req.body.name;
