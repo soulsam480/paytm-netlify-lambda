@@ -25,7 +25,7 @@ router.post("/", cors(corsOptions), (req, res) => {
     if (req.body.STATUS == "TXN_SUCCESS") {
       res.send("<p>Success</p>");
     } else {
-      res.send("<p>failed</p>>");
+      res.send("<p>Transaction failed</p>>");
     }
   } else {
     res.send("<p>failed</p>");
