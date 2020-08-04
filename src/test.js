@@ -8,8 +8,10 @@ const corsOptions = {
 };
 const router = express.Router();
 router.get("/", cors(corsOptions), (req, res) => {
-  const name = req.body.name;
-  res.statusCode("200").send(`hello ${name}`);
+  /*   const name = req.body.name;
+   */ res.sendStatus(404);
+  /*   res.send("yoyo");
+   */
 });
 app.use("/.netlify/functions/test", router);
 module.exports.handler = serverless(app);
