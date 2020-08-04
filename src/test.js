@@ -9,7 +9,7 @@ const corsOptions = {
 const router = express.Router();
 router.get("/", cors(corsOptions), (req, res) => {
   /*   const name = req.body.name;
-   */ res.sendStatus(404);
+   */ res.sendStatus(200);
   /*   res.send("yoyo");
    */
 });
