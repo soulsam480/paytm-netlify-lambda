@@ -37,6 +37,7 @@ router.post("/", cors(corsOptions), (req, res) => {
   paramarray["CALLBACK_URL"] = paytm_config.CALLBACK_URL; //Provided by Paytm
   paramarray["EMAIL"] = email;
   paramarray["MOBILE_NO"] = mobile; // customer 10 digit mobile no.
+  console.log(paramarray);
   paytm_checksum.genchecksum(paramarray, paytm_config.MERCHANT_KEY, function (
     err,
     checksum
