@@ -83,6 +83,7 @@ router.post("/", cors(corsOptions), (req, res) => {
               4,
               7
             )}_${Date().slice(8, 10)}`;
+            console.log(date);
             await admin
               .database()
               .ref(`/Orders/${date}/${req.body.ORDERID}`)
