@@ -28,14 +28,14 @@ router.post("/", cors(corsOptions), (req, res) => {
 
   var paramarray = {};
   paramarray["MID"] = paytm_config.MID; //Provided by Paytm
-  paramarray["ORDER_ID"] = orderid.replace(" ", "-"); //unique OrderId for every request
-  paramarray["CUST_ID"] = name.replace(" ", "-"); // unique customer identifier
+  paramarray["ORDER_ID"] = orderid;
+  paramarray["CUST_ID"] = name;
   paramarray["INDUSTRY_TYPE_ID"] = paytm_config.INDUSTRY_TYPE_ID; //Provided by Paytm
   paramarray["CHANNEL_ID"] = paytm_config.CHANNEL_ID; //Provided by Paytm
   paramarray["TXN_AMOUNT"] = amount; // transaction amount
   paramarray["WEBSITE"] = paytm_config.WEBSITE; //Provided by Paytm
   paramarray["CALLBACK_URL"] = paytm_config.CALLBACK_URL; //Provided by Paytm
-  paramarray["EMAIL"] = email.replace(" ", "-"); // customer email id
+  paramarray["EMAIL"] = email;
   paramarray["MOBILE_NO"] = mobile; // customer 10 digit mobile no.
   paytm_checksum.genchecksum(paramarray, paytm_config.MERCHANT_KEY, function (
     err,
