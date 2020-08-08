@@ -6,7 +6,7 @@ module.exports = {
     type: "service_account",
     project_id: "ecom-test-53555",
     private_key_id: PRIVATE_KEY_ID,
-    private_key: PRIVATE_KEY,
+    private_key: PRIVATE_KEY.replace(/\\n/g, "\n"),
     client_email:
       "firebase-adminsdk-ijb5q@ecom-test-53555.iam.gserviceaccount.com",
     client_id: "101621889260973490183",
