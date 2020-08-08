@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "netlify-lambda serve src",
+    "start": "netlify-lambda -c ./config/webpack.config.js serve src",
     "build": "netlify-lambda build src"
   },
   "repository": {
@@ -19,12 +19,17 @@
   },
   "homepage": "https://github.com/soulsam480/netlify-function-test#readme",
   "dependencies": {
+    "axios": "^0.19.2",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "netlify-lambda": "^2.0.1",
-    "serverless-http": "^2.5.0",
     "crypto": "^1.0.1",
+    "express": "^4.17.1",
+    "firebase-admin": "^9.0.0",
+    "generate-json-webpack-plugin": "^1.0.0",
+    "https": "^1.0.0",
+    "netlify-lambda": "^2.0.1",
+    "path": "^0.12.7",
+    "serverless-http": "^2.5.0",
     "util": "^0.12.3"
   },
   "devDependencies": {}

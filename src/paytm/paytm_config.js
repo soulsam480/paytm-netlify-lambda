@@ -11,7 +11,7 @@ module.exports = {
     MERCHANT_KEY: MERCHANT_KEY, // Get it From https://dashboard.paytm.com/next/apikeys use Test key for test purpose and Production key for Production Purpose
     CALLBACK_URL:
       "https://hopeful-mirzakhani-a59182.netlify.app/.netlify/functions/payConf", // Modify and Use this url for verifying payment, we will use cloud function DonationCallback function for Our usage
-
+    /* https://hopeful-mirzakhani-a59182.netlify.app */
     /*     // Additional Config
 
     MinAmount: 100, // Munimum amount you waana accept for donation

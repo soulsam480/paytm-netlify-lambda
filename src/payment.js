@@ -14,10 +14,8 @@ const router = express.Router();
 
 router.post("/", cors(corsOptions), (req, res) => {
   const paytm_config = require("./paytm/paytm_config").paytm_config;
-  const paytm_checksum = require("./paytm/checksum");
-  const myFun = require("./utils/myFunc");
-  //code starts here
-  var random = Math.floor(Math.random() * 999999).toString();
+  const paytm_checksum = require("./paytm/checksum"); //code starts here
+
   var amount = req.body.amount;
   var name = req.body.name;
   var email = req.body.email;
@@ -26,19 +24,6 @@ router.post("/", cors(corsOptions), (req, res) => {
 
   if (amount == undefined) {
     res.send("Amount is Mandatory.");
-  }
-
-  if (name == undefined) {
-    name = "CUST" + random;
-  }
-  if (email == undefined) {
-    email = "email" + Math.floor(Math.random() * 999999).toString() + "@na.com";
-  }
-  if (mobile == undefined) {
-    mobile = "9999" + random;
-  }
-  if (orderid == undefined) {
-    orderid = "ORDER" + random;
   }
 
   var paramarray = {};
@@ -56,9 +41,17 @@ router.post("/", cors(corsOptions), (req, res) => {
     err,
     checksum
   ) {
-    res.send(
-      myFun.returnPage(paramarray, checksum, paytm_config.PAYTM_ENVIRONMENT)
-    );
+    var url = "";
+    if (paytm_config.PAYTM_ENVIRONMENT == "PROD") {
+      url = "https://securegw.paytm.in/order/process";
+    } else if (paytm_config.PAYTM_ENVIRONMENT == "TEST") {
+      url = "https://securegw-stage.paytm.in/theia/processTransaction";
+    }
+    res.send({
+      action: url,
+      params: paramarray,
+      checksum: checksum,
+    });
   });
 });
 app.use("/.netlify/functions/payment", router);
