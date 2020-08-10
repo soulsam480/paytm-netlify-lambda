@@ -27,7 +27,7 @@ if (!admin.apps.length) {
 }
 //firebase
 router.post("/", cors(corsOptions), async (req, res) => {
-  if (req.body !== {} && req.body.cart.length > 0) {
+  if (req.body !== {} && req.body.orderId !== " ") {
     const date = `${Date().slice(11, 15)}_${Date().slice(4, 7)}_${Date().slice(
       8,
       10
