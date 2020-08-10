@@ -27,7 +27,7 @@ if (!admin.apps.length) {
 }
 //firebase
 router.post("/", cors(corsOptions), async (req, res) => {
-  if (req.body !== {}) {
+  if (req.body !== {} && req.body.cart.length > 0) {
     const date = `${Date().slice(11, 15)}_${Date().slice(4, 7)}_${Date().slice(
       8,
       10
@@ -37,13 +37,14 @@ router.post("/", cors(corsOptions), async (req, res) => {
       .ref(`/Orders/${date}/${req.body.orderId}`)
       .set(req.body)
       .then(() => {
-        res.send("sdfd");
+        res.sendStatus(200);
       })
-      .catch(() => {
-        res.status(500).send("Failed");
+      .catch((err) => {
+        console.log(err);
+        res.sendStatus(500);
       });
   } else {
-    res.status(500).send("Failed");
+    res.sendStatus(500);
   }
 });
 app.use("/.netlify/functions/syncOrder", router);
