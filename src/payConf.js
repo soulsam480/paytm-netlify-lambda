@@ -37,6 +37,7 @@ router.post("/", cors(corsOptions), (req, res) => {
   if (
     paytm_checksum.verifychecksum(req.body, paytm_config.MERCHANT_KEY, checksum)
   ) {
+    console.log("checksum verified local");
     var paytmParams = {};
 
     paytmParams.body = {
@@ -52,7 +53,7 @@ router.post("/", cors(corsOptions), (req, res) => {
       paytmParams.head = {
         signature: checksum,
       };
-
+      console.log("generated signature");
       var post_data = JSON.stringify(paytmParams);
 
       var options = {
@@ -69,16 +70,18 @@ router.post("/", cors(corsOptions), (req, res) => {
           "Content-Length": post_data.length,
         },
       };
-
+      console.log("this is before request");
       var response = "";
       var post_req = https.request(options, function (post_res) {
         post_res.on("data", function (chunk) {
           response += chunk;
         });
         post_res.on("end", async () => {
+          console.log("from paytm");
           const resBody = JSON.parse(response);
           const paytm_response = resBody.body.resultInfo;
           if (paytm_response.resultStatus === "TXN_SUCCESS") {
+            console.log("isSuccess");
             const date = `${Date().slice(11, 15)}_${Date().slice(
               4,
               7
@@ -91,14 +94,17 @@ router.post("/", cors(corsOptions), (req, res) => {
                 orderId: req.body.ORDERID,
               })
               .then(() => {
+                console.log("sending data");
                 res.send(
                   `<script>window.location ='https://tiaamo.com/order/?paytm_response=${paytm_response.resultStatus}' </script>`
                 );
               })
-              .catch(() => {
-                "<script>window.location ='https://tiaamo.com/cart' </script>";
+              .catch((err) => {
+                console.log(err);
+                ("<script>window.location ='https://tiaamo.com/cart' </script>");
               });
           } else if (paytm_response.resultStatus === "TXN_FAILURE") {
+            console.log("isFailure");
             res.send(
               "<script>window.location ='https://tiaamo.com/cart'</script>"
             );
@@ -110,9 +116,7 @@ router.post("/", cors(corsOptions), (req, res) => {
       post_req.end();
     });
   } else {
-    res.send(
-      "<script>window.location ='http://store.sambitsahoo.com/#/cart' </script>"
-    );
+    res.send("<script>window.location ='http://tiaamo.com/cart' </script>");
   }
 });
 app.use("/.netlify/functions/payConf", router);
