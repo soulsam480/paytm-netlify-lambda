@@ -92,15 +92,15 @@ router.post("/", cors(corsOptions), (req, res) => {
               })
               .then(() => {
                 res.send(
-                  `<script>window.location ='http://store.sambitsahoo.com/#/order/?paytm_response=${paytm_response.resultStatus}' </script>`
+                  `<script>window.location ='https://tiaamo.com/order/?paytm_response=${paytm_response.resultStatus}' </script>`
                 );
               })
               .catch(() => {
-                "<script>window.location ='http://store.sambitsahoo.com/#/cart' </script>";
+                "<script>window.location ='https://tiaamo.com/cart' </script>";
               });
           } else if (paytm_response.resultStatus === "TXN_FAILURE") {
             res.send(
-              "<script>window.location ='http://store.sambitsahoo.com/#/cart'</script>"
+              "<script>window.location ='https://tiaamo.com/cart'</script>"
             );
           }
         });
