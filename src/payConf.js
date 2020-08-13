@@ -79,6 +79,7 @@ router.post("/", cors(corsOptions), (req, res) => {
         post_res.on("end", async () => {
           console.log("from paytm");
           const resBody = JSON.parse(response);
+          console.log(resBody);
           const paytm_response = resBody.body.resultInfo;
           if (paytm_response.resultStatus === "TXN_SUCCESS") {
             console.log("isSuccess");
