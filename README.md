@@ -1,6 +1,6 @@
 ## Paytm-Netlify-Lambda 🚀
 
-Paytm payments integration for serverless JAMstack websites using netlify lambda functions. This repo will save you from the nightmare of setting up a serverless payment integration from scratch.
+[Paytm](https://paytm.com) payments integration for serverless JAMstack websites using [Netlify lambda](https://www.netlify.com/products/functions/) functions. This repo will save you from the nightmare of setting up a serverless payment integration from scratch.
 
 🚀 It's live [here](https://tiaamo.com) 
 
