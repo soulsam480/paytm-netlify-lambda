@@ -90,7 +90,7 @@ router.post("/", cors(corsOptions), (req, res) => {
                 );
               })
               .catch(() => {
-                ("<script>window.location ='fallback_url' </script>");
+                res.send("<script>window.location ='fallback_url' </script>");
               });
           } else if (paytm_response.resultStatus === "TXN_FAILURE") {
             res.send("<script>window.location ='fallback_url'</script>");

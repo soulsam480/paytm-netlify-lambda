@@ -1,23 +1,22 @@
 {
-  "name": "netlify-function-test",
+  "name": "paytm-netlify-lambda",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Netlify Lambda Function for Serverless Paytm Payments Integration",
   "scripts": {
     "start": "netlify-lambda -c ./config/webpack.config.js serve src",
     "build": "netlify-lambda -c ./config/webpack.config.js build src"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/soulsam480/netlify-function-test.git"
+    "url": "git+https://github.com/soulsam480/paytm-netlify-lambda.git"
   },
   "keywords": [],
   "author": "Sambit Sahoo",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/soulsam480/netlify-function-test/issues"
+    "url": "https://github.com/soulsam480/paytm-netlify-lambda/issues"
   },
-  "homepage": "https://github.com/soulsam480/netlify-function-test#readme",
+  "homepage": "https://github.com/soulsam480/paytm-netlify-lambda/blob/master/README.md",
   "dependencies": {
     "axios": "^0.19.2",
     "body-parser": "^1.19.0",
