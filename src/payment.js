@@ -43,7 +43,7 @@ router.post("/", cors(corsOptions), (req, res) => {
   ) {
     var url = "";
     if (paytm_config.PAYTM_ENVIRONMENT == "PROD") {
-      url = "https://securegw.paytm.in/order/process";
+      url = "https://securegw-stage.paytm.in/theia/processTransaction";
     } else if (paytm_config.PAYTM_ENVIRONMENT == "TEST") {
       url = "https://securegw-stage.paytm.in/theia/processTransaction";
     }
