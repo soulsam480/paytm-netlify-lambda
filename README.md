@@ -1,1 +1,1 @@
-## Netlify function test
+@netlify lambda function for serverless @paytm payments integration
