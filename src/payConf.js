@@ -24,10 +24,7 @@ const serviceAccount = require("./cred/authKey").authKey;
 if (!admin.apps.length) {
   admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
-    databaseURL: "https://ecom-test-53555.firebaseio.com",
-    databaseAuthVariableOverride: {
-      uid: "lSC134A31NZqjxaEtGvaKfG0PTA3",
-    },
+    databaseURL: "Your database url",
   });
 }
 //firebase
@@ -37,7 +34,6 @@ router.post("/", cors(corsOptions), (req, res) => {
   if (
     paytm_checksum.verifychecksum(req.body, paytm_config.MERCHANT_KEY, checksum)
   ) {
-    console.log("checksum verified local");
     var paytmParams = {};
 
     paytmParams.body = {
@@ -53,7 +49,6 @@ router.post("/", cors(corsOptions), (req, res) => {
       paytmParams.head = {
         signature: checksum,
       };
-      console.log("generated signature");
       var post_data = JSON.stringify(paytmParams);
 
       var options = {
@@ -70,24 +65,19 @@ router.post("/", cors(corsOptions), (req, res) => {
           "Content-Length": post_data.length,
         },
       };
-      console.log("this is before request");
       var response = "";
       var post_req = https.request(options, function (post_res) {
         post_res.on("data", function (chunk) {
           response += chunk;
         });
         post_res.on("end", async () => {
-          console.log("from paytm");
           const resBody = JSON.parse(response);
-          console.log(resBody);
           const paytm_response = resBody.body.resultInfo;
           if (paytm_response.resultStatus === "TXN_SUCCESS") {
-            console.log("isSuccess");
             const date = `${Date().slice(11, 15)}_${Date().slice(
               4,
               7
             )}_${Date().slice(8, 10)}`;
-            console.log(date);
             await admin
               .database()
               .ref(`/Orders/${date}/${req.body.ORDERID}`)
@@ -95,20 +85,15 @@ router.post("/", cors(corsOptions), (req, res) => {
                 orderId: req.body.ORDERID,
               })
               .then(() => {
-                console.log("sending data");
                 res.send(
-                  `<script>window.location ='https://tiaamo.com/order/?paytm_response=${paytm_response.resultStatus}' </script>`
+                  `<script>window.location ='https://your_site_order_confirmation_url/?paytm_response=${paytm_response.resultStatus}' </script>`
                 );
               })
-              .catch((err) => {
-                console.log(err);
-                ("<script>window.location ='https://tiaamo.com/cart' </script>");
+              .catch(() => {
+                ("<script>window.location ='fallback_url' </script>");
               });
           } else if (paytm_response.resultStatus === "TXN_FAILURE") {
-            console.log("isFailure");
-            res.send(
-              "<script>window.location ='https://tiaamo.com/cart'</script>"
-            );
+            res.send("<script>window.location ='fallback_url'</script>");
           }
         });
       });
@@ -117,7 +102,7 @@ router.post("/", cors(corsOptions), (req, res) => {
       post_req.end();
     });
   } else {
-    res.send("<script>window.location ='http://tiaamo.com/cart' </script>");
+    res.send("<script>window.location ='fallback_url' </script>");
   }
 });
 app.use("/.netlify/functions/payConf", router);
